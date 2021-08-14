@@ -1,0 +1,40 @@
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "Text to speak"
+        required: true
+        default: "In the wee hours of the morning, Tesla CEO Elon Musk replied a few times on Twitter confirming that Full Self-Driving Beta Version 9 is set to start rolling out this weekend. He clarified that it will start happening this Saturday, not Saturday in two weeks."
+      lang:
+        description: "Lang"
+        required: false
+        default: "en"
+      tld:
+        description: "TLD"
+        required: false
+        default: "com"
+
+name: Get voice
+jobs:
+  get:
+    name: Get voice
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8']
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-python@v2
+      - run: sudo apt update
+      - run: pip install gTTS pydub
+      - run: echo $text > input.txt
+        env:
+          text: ${{ github.event.inputs.text }}
+      - run: python main.py ./input.txt $lang $tld
+        env:
+          lang: ${{ github.event.inputs.lang }}
+          tld: ${{ github.event.inputs.tld }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: output.mp3
+          path: output.mp3
