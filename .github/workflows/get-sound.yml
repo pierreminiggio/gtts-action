@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
       - run: sudo apt update
-      - run: pip install gTTS pydub
+      - run: pip install scipy gTTS pydub
       - run: echo $text > input.txt
         env:
           text: ${{ github.event.inputs.text }}
