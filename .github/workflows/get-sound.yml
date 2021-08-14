@@ -26,6 +26,7 @@ jobs:
       - uses: actions/checkout@main
       - uses: actions/setup-python@v2
       - run: sudo apt update
+      - run: sudo apt-get install ffmpeg
       - run: pip install scipy gTTS pydub
       - run: echo $text > input.txt
         env:
