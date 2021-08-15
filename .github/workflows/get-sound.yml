@@ -13,6 +13,10 @@ on:
         description: "TLD"
         required: false
         default: "com"
+      enhance:
+        description: "Enhance sound"
+        required: false
+        default: "1"
 
 name: Get voice
 jobs:
@@ -31,10 +35,11 @@ jobs:
       - run: echo $text > input.txt
         env:
           text: ${{ github.event.inputs.text }}
-      - run: python main.py ./input.txt $lang $tld
+      - run: python main.py ./input.txt $lang $tld $enhance
         env:
           lang: ${{ github.event.inputs.lang }}
           tld: ${{ github.event.inputs.tld }}
+          enhance: ${{ github.event.inputs.enhance }}
       - uses: actions/upload-artifact@v2
         with:
           name: output.mp3
