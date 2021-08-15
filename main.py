@@ -21,7 +21,7 @@ tts = gTTS(text=text, lang=lang, tld=tld)
 
 ouput_file = 'output.mp3'
 
-tts_file = ouput_file if enhance else 'hello.mp3'
+tts_file = 'hello.mp3' if enhance else ouput_file
 tts.save(tts_file)
 
 if enhance:
