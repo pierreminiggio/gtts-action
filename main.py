@@ -13,7 +13,7 @@ if len(args) != 4 and len(args) != 5:
 input_text_file_path = args[1]
 lang = args[2]
 tld = args[3]
-enhance = len(args) != 5 or args[4] != '1'
+enhance = len(args) != 5 or args[4] == '1'
 
 text = open(input_text_file_path, 'r').read()
 
