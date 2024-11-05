@@ -40,7 +40,7 @@ jobs:
           lang: ${{ github.event.inputs.lang }}
           tld: ${{ github.event.inputs.tld }}
           enhance: ${{ github.event.inputs.enhance }}
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: output.mp3
           path: output.mp3
